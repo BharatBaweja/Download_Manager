@@ -18,12 +18,14 @@ class URLValidator
 		Matcher matcher = URL_PATTERN.matcher(url);
 		return matcher.matches();
 	}
+
+
 }
     class TestValidator{
 	public static void main(String args[])
 	{
 		URLValidator url1 = new URLValidator();
-		String url = "https://www.github.c/";
+		String url = "https:/www.github.c/";
 		boolean urlVal = url1.urlValidator(url);
 		// Validate an url
 		if (urlVal) {
@@ -32,6 +34,13 @@ class URLValidator
 		else {
 			System.out.print("The URL " + url + " isn't valid");
 		}
-
+		CheckIfDirectoryExists chkDirect = new CheckIfDirectoryExists();
+		boolean chk = chkDirect.CheckIfDirectoryExists("sdiuugvig");
+		if (chk) {
+			System.out.println("The path  is valid");
+		}
+		else {
+			System.out.println("The path  isn't valid");
+		}
 	}
 }
