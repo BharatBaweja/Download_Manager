@@ -25,7 +25,7 @@ public void run(){
 				double fileSize = (double)http.getContentLengthLong();
 				BufferedInputStream in = new BufferedInputStream(http.getInputStream());
 				FileOutputStream fos = new FileOutputStream(this.out);
-				BufferedOutputStream bout = new BufferedOutputStream(fos , 1024);
+				BufferedOutputStream bout = new BufferedOutputStream();
 				byte[] buffer = new byte[1024];
 				double downloaded = 0.00;
 				int read = 0;
