@@ -1,4 +1,4 @@
-package src.exceptions;
+package com.ncu.exceptions;
 
 public class UrlException extends Exception
 {  
