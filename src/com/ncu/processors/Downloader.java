@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
  
 
-public class Download{
+ class Download{
     private static final int BUFFER_SIZE = 4096;
  
     
@@ -39,7 +39,6 @@ public class Download{
             }
  
             System.out.println("Content-Type = " + contentType);
-            System.out.println("Content-Disposition = " + disposition);
             System.out.println("Content-Length = " + contentLength);
             System.out.println("fileName = " + fileName);
  
@@ -66,3 +65,15 @@ public class Download{
         httpConn.disconnect();
     }
 }
+/*public class Downloader {
+ 
+    public static void main(String[] args) {
+        String fileURL = "http://jdbc.postgresql.org/download/postgresql-9.2-1002.jdbc4.jar";
+        String outputDirectory = "C:/Desktop";
+        try {
+            Download.downloadFile(fileURL, outputDirectory);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+}*/

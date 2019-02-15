@@ -1,3 +1,4 @@
+package com.ncu.processors;
 import java.util.*;
 import java.io.*;
 import java.lang.*;
@@ -14,7 +15,7 @@ public class CreateFile
    {
 	 try{
 	 	//String m =(System.getProperty("user.dir") + File.separator + "file"+ File.seperator + "file.txt"); 
-		File obj = new File("C:\\Users\\jdars\\Desktop\\Download_Manager\\file\\file.txt");
+		File obj = new File("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
 		for(int i=1;i<=2;i++)
 		{
 			if(obj.exists())
@@ -28,7 +29,7 @@ public class CreateFile
 			
 		}
 
-	  FileWriter myWriter = new FileWriter("C:\\Users\\jdars\\Desktop\\Download_Manager\\file\\file.txt");
+	  FileWriter myWriter = new FileWriter("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
       myWriter.write(" try ");//myWriter.write("url\tstaus")
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
