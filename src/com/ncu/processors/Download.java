@@ -1,48 +1,68 @@
 package com.ncu.processors;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+ 
 
-
-public class Download implements Runnable {
-    String link;
-    File out;
-
-    public Download(String link, File out) {
-        this.link = link;
-        this.out = out;
-    }
-
-    public void run() {
-        try {
-            URL url = new URL(link);
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            double fileSize = (double) http.getContentLengthLong();
-            BufferedInputStream in = new BufferedInputStream(http.getInputStream());
-            FileOutputStream fos = new FileOutputStream(this.out);
-            BufferedOutputStream bout = new BufferedOutputStream(fos, 1024);
-            byte[] buffer = new byte[1024];
-            double download = 0.00;
-            int read = 0;
-            double percentDownload = 0.00;
-            while ((read = in.read(buffer, 0, 1024)) >= 0) {
-                bout.write(buffer, 0 , read);
-                download += read;
-                percentDownload=(download*100)/fileSize;
-                String percent = String.format("%.4f",percentDownload);
-                System.out.println("Downloaded "+percent+"% of the file.");
+public class Download{
+    private static final int BUFFER_SIZE = 4096;
+ 
+    
+    
+    public static void downloadFile(String fileURL, String outputDirectory)
+            throws IOException {
+        URL url = new URL(fileURL);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        int responseCode = httpConn.getResponseCode();
+ 
+        // always check HTTP response code first
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            String fileName = "";
+            String disposition = httpConn.getHeaderField("Content-Disposition");
+            String contentType = httpConn.getContentType();
+            int contentLength = httpConn.getContentLength();
+ 
+            if (disposition != null) {
+                // extracts file name from header field
+                int index = disposition.indexOf("filename=");
+                if (index > 0) {
+                    fileName = disposition.substring(index + 10,
+                            disposition.length() - 1);
+                }
+            } else {
+                // extracts file name from URL
+                fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1,
+                        fileURL.length());
             }
-            bout.close();
-            in.close();
-            System.out.println("Download Complete!!!");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
+ 
+            System.out.println("Content-Type = " + contentType);
+            System.out.println("Content-Disposition = " + disposition);
+            System.out.println("Content-Length = " + contentLength);
+            System.out.println("fileName = " + fileName);
+ 
+            // opens input stream from the HTTP connection
+            InputStream inputStream = httpConn.getInputStream();
+            String saveFilePath = outputDirectory + File.separator + fileName;
+             
+            // opens an output stream to save into file
+            FileOutputStream outputStream = new FileOutputStream(saveFilePath);
+ 
+            int bytesRead = -1;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+ 
+            outputStream.close();
+            inputStream.close();
+ 
+            System.out.println("File downloaded");
+        } else {
+            System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }
+        httpConn.disconnect();
     }
-
 }

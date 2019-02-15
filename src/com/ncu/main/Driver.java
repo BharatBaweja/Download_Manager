@@ -1,11 +1,13 @@
-package src .main;
-import src.exceptions.*;
-import src.validators.*;
-import src.processor.*;
+package com.ncu.main;
+import com.ncu.exceptions.*;
+import com.ncu.validators.*;
+import com.ncu.processors.*;
 import java.util.*;
+import java.io.*;
 //Main driver program
 class Driver{
 	public static void main(String args[]){
+		Validator check = new Validator();
 		String url;
 		String outputDirectory;
 		Scanner in = new Scanner(System.in);
@@ -14,29 +16,17 @@ class Driver{
 		System.out.println("---------------------------------");
 		System.out.println("Please copy the link");
 		url = in.nextLine();
-		//for validating the url
-		URLValidator linkValidator = new URLValidator();
-		boolean linkVal = linkValidator.urlValidator(url);
-		/*if(linkVal)
-			System.out.println("Link is valid");
-		else{
-			System.out.println("Link is not valid");
-			System.out.println("Please enter a valid link");
-			url = in.nextLine();
-		}*/
-		//for validating the path
-		System.out.println("Please enter the path for download");
+		System.out.println("Please enter outputDirectory");
 		outputDirectory = in.nextLine();
-		CheckIfDirectoryExists pathvalidator = new CheckIfDirectoryExists();
-		boolean pathVal = pathValidator.CheckIfDirectoryExists(outputDirectory);
-		/*if(pathVal)
-			System.out.println("Path is valid");
-		else{
-			System.out.println("Path is not valid ,please enter a valid path");
-			outputDirectory = in.nextLine();
-		}*/
-
-		FileDownloadTest download = new FileDownloadTest();
-
+		//validate the output Directory and URL
+		check.Test();
+		Download downLoad = new Download();
+		try{
+			downLoad.downloadFile(url,outputDirectory);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	
 	}
 }
