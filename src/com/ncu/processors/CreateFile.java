@@ -30,7 +30,7 @@ public class CreateFile
 		}
 
 	  FileWriter myWriter = new FileWriter("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
-      myWriter.write(" try ");//myWriter.write("url\tstaus")
+      myWriter.write(" try ");//myWriter.write("url\status")
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
       }
@@ -43,7 +43,7 @@ public class CreateFile
 	}
 }
 class Try{
-public static void main(String[] args)
+public static void main(String args[])
 {
 	CreateFile cf = new CreateFile();
 	cf.New();

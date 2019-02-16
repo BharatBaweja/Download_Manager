@@ -4,6 +4,7 @@ import com.ncu.validators.*;
 import com.ncu.processors.*;
 import java.util.*;
 import java.io.*;
+
 //Main driver program
 class Driver{
 	public static void main(String args[]){
@@ -19,7 +20,15 @@ class Driver{
 		System.out.println("Please enter outputDirectory");
 		outputDirectory = in.nextLine();
 		//validate the output Directory and URL
-		check.Test();
+		check.Test(url,outputDirectory);
+		if(check.Test(url,outputDirectory)==false){
+		System.out.println("Please enter correct details");
+		System.out.println("Please copy the link");
+		url = in.nextLine();
+		System.out.println("Please enter outputDirectory");
+		outputDirectory = in.nextLine();
+			
+		}
 		Download downLoad = new Download();
 		try{
 			downLoad.downloadFile(url,outputDirectory);

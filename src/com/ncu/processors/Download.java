@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
  
 
- class Download{
+public  class Download{
     private static final int BUFFER_SIZE = 4096;
  
     
@@ -68,8 +68,8 @@ import java.net.URL;
 /*public class Downloader {
  
     public static void main(String[] args) {
-        String fileURL = "http://jdbc.postgresql.org/download/postgresql-9.2-1002.jdbc4.jar";
-        String outputDirectory = "C:/Desktop";
+        String fileURL = "https://www.tutorialspoint.com/java/java_tutorial.pdf";
+        String outputDirectory = "C:\\Users\\Dell\\Desktop\\Download_Manager";
         try {
             Download.downloadFile(fileURL, outputDirectory);
         } catch (IOException ex) {
