@@ -52,7 +52,16 @@ public  class Download{
             int bytesRead = -1;
             byte[] buffer = new byte[BUFFER_SIZE];
             while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
+               outputStream.write(buffer, 0, bytesRead);
+                double download = 0.00;
+            double percentDownload = 0.00;
+            int read=0;
+              while ((read = inputStream.read(buffer, 0, BUFFER_SIZE)) >= 0) {
+                download += read;
+                percentDownload=(download*100)/contentLength;
+                String percent = String.format("%.4f",percentDownload);
+                System.out.println("Downloaded "+percent+"% of the file.");
+            }
             }
  
             outputStream.close();
