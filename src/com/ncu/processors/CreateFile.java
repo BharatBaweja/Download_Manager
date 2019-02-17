@@ -3,15 +3,9 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 import com.ncu.processors.*;
-
-/*public String getTablePath() 
-{
-		return (System.getProperty("user.dir") + File.separator + "file");
-}*/
-
 public class CreateFile
 {
-  void New()// void New(String url, String status )
+  public void New(String fileName,String status)// void New(String url, String status )
    {
 	 try{
 	 	//String m =(System.getProperty("user.dir") + File.separator + "file"+ File.seperator + "file.txt"); 
@@ -30,7 +24,8 @@ public class CreateFile
 		}
 
 	  FileWriter myWriter = new FileWriter("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
-      myWriter.write(" try ");//myWriter.write("url\status")
+      myWriter.write(fileName);
+      myWriter.write("\t\t"+status);//myWriter.write("url\status")
       myWriter.close();
       System.out.println("Successfully wrote to the file.");
       }
@@ -41,12 +36,4 @@ public class CreateFile
         e.printStackTrace();
       }
 	}
-}
-class Try{
-public static void main(String args[])
-{
-	CreateFile cf = new CreateFile();
-	cf.New();
-	
-}
 }

@@ -10,6 +10,7 @@ class Driver{
 	public static void main(String args[]){
 		Validator check = new Validator();
 		String url;
+		String status;
 		String outputDirectory;
 		Scanner in = new Scanner(System.in);
 		System.out.println("---------------------------------");
@@ -36,6 +37,14 @@ class Driver{
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		if(check.Test(url,outputDirectory)==true){
+			status="Success";
+	}
+			else{
+				status="Fail";
+			}
+		CreateFile obj = new CreateFile();
+		obj.New(url,status);
 	
 	}
 }

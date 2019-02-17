@@ -5,12 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
- 
+import java.util.*;
 
 public  class Download{
     private static final int BUFFER_SIZE = 4096;
- 
-    
+    Scanner in = new Scanner(System.in);
     
     public static void downloadFile(String fileURL, String outputDirectory)
             throws IOException {
@@ -69,7 +68,7 @@ public  class Download{
  
             System.out.println("File downloaded");
         } else {
-            System.out.println("No file to download. Server replied HTTP code: " + responseCode);
+                System.out.println("Please enter link with format extension");
         }
         httpConn.disconnect();
     }
