@@ -9,7 +9,7 @@ import java.util.*;
 
 public  class Download{
     private static final int BUFFER_SIZE = 4096;
-    Scanner in = new Scanner(System.in);
+    static Scanner in = new Scanner(System.in);
     
     public static void downloadFile(String fileURL, String outputDirectory)
             throws IOException {
@@ -58,17 +58,24 @@ public  class Download{
               while ((read = inputStream.read(buffer, 0, BUFFER_SIZE)) >= 0) {
                 download += read;
                 percentDownload=(download*100)/contentLength;
-                String percent = String.format("%.4f",percentDownload);
+                String percent = String.format("%.2f",percentDownload);
                 System.out.println("Downloaded "+percent+"% of the file.");
             }
             }
  
             outputStream.close();
             inputStream.close();
- 
             System.out.println("File downloaded");
         } else {
-                System.out.println("Please enter link with format extension");
+                System.out.println("Please enter correct link");
+                boolean flag=false;
+                try{
+                    String newurl = in.nextLine();
+                    downloadFile(newurl,outputDirectory);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
         }
         httpConn.disconnect();
     }

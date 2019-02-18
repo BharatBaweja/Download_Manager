@@ -16,9 +16,9 @@ class Driver{
 		System.out.println("---------------------------------");
 		System.out.println("\t DOWNLOAD MANAGER");
 		System.out.println("---------------------------------");
-		System.out.println("Please copy the link");
+		System.out.println("\n Please copy the link:\n");
 		url = in.nextLine();
-		System.out.println("Please enter outputDirectory");
+		System.out.println("\n Please enter outputDirectory: \n");
 		outputDirectory = in.nextLine();
 		//validate the output Directory and URL
 		check.Test(url,outputDirectory);
@@ -45,6 +45,5 @@ class Driver{
 			}
 		CreateFile obj = new CreateFile();
 		obj.New(url,status);
-	
 	}
 }

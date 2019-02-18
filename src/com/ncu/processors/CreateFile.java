@@ -5,11 +5,12 @@ import java.lang.*;
 import com.ncu.processors.*;
 public class CreateFile
 {
-  public void New(String fileName,String status)// void New(String url, String status )
+  public void New(String fileName,String status)
    {
+   
 	 try{
-	 	//String m =(System.getProperty("user.dir") + File.separator + "file"+ File.seperator + "file.txt"); 
-		File obj = new File("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
+	 	String m =(System.getProperty("user.dir") + File.separator + "file\\file.txt"); 
+		File obj = new File(m);
 		for(int i=1;i<=2;i++)
 		{
 			if(obj.exists())
@@ -23,13 +24,12 @@ public class CreateFile
 			
 		}
 
-	  FileWriter myWriter = new FileWriter("C:\\Users\\Dell\\Desktop\\Download_Manager\\file\\file.txt");
-      myWriter.write(fileName);
-      myWriter.write("\t\t"+status);//myWriter.write("url\status")
-      myWriter.close();
-      System.out.println("Successfully wrote to the file.");
+	  FileWriter myWriter = new FileWriter(m, true);
+	  BufferedWriter bout = new BufferedWriter(myWriter);
+      bout.write( fileName+ "\t" + status +"\n");
+      bout.newLine();
+      bout.close();
       }
-
 	  catch (IOException e) 
 	  {
         System.out.println("An error occurred.");
