@@ -10,17 +10,19 @@ import org.apache.log4j.PropertyConfigurator;
 
 //Main driver program
 class Driver{
+	static String log4jConfigFile = System.getProperty("user.dir") + File.separator + "configs\\logger\\logger.properties"; 
+	static Logger logger;
 	public static void main(String... args){
 		Validator check = new Validator();
 		String url;
 		String status;
-		String log4jConfigFile = System.getProperty("user.dir") + File.separator + "configs\\logger\\logger.properties"; 
+		
 		String outputDirectory;
 		Scanner in = new Scanner(System.in);
 		System.out.println("---------------------------------");
 		System.out.println("\t DOWNLOAD MANAGER");
 		System.out.println("---------------------------------");
-		Logger logger = Logger.getLogger(Driver.class);
+		logger = Logger.getLogger(Driver.class);
 
     	PropertyConfigurator.configure(log4jConfigFile);
 		logger.info("\n Please copy the link:\n");
